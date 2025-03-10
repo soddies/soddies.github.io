@@ -1,1 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplication Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        table {
+            border-collapse: collapse;
+            width: auto;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+
+<table>
+    <thead>
+        <tr>
+            <th>×</th>
+            <!-- Заголовки для столбцов -->
+            <script>
+                for (let i = 1; i <= 10; i++) {
+                    document.write("<th>" + i + "</th>");
+                }
+            </script>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Строки таблицы -->
+        <script>
+            for (let i = 1; i <= 10; i++) {
+                document.write("<tr>");
+                document.write("<th>" + i + "</th>"); // Первый столбец
+                for (let j = 1; j <= 10; j++) {
+                    document.write("<td>" + i * j + "</td>");
+                }
+                document.write("</tr>");
+            }
+        </script>
+    </tbody>
+</table>
+
+</body>
+</html>
 

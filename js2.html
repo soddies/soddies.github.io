@@ -1,0 +1,27 @@
+<html lang="en">
+<meta charset="utf8">
+<body>
+    <div id="some_div"></div> 
+
+
+<script>
+//window- главный объект
+
+//document
+//   let elem =    document.getElementById (       # id );
+//   elem.innerHTML+=
+//   elem.style.(css)
+//   elem.события = ссылка на фукнцию, или function () {             }
+function a() { let x=10;}//видна только внутри функции
+
+function b() { var y=10;}
+function c() { z=10;}//видна везде (глобальная видимость)
+
+a();b();c();
+
+console.log(window);
+
+
+</script>
+</body>
+</html>

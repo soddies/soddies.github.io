@@ -1,0 +1,39 @@
+
+<html lang="en">
+<meta charset="utf8">
+<body>
+    
+
+
+<script>
+  
+
+
+const another_function = function() {        }
+
+
+function some_function(some_argument) {
+
+window.console.log('its some function');
+window.console.log(some_argument);
+
+    }
+
+x = some_function;
+y= some_function();
+
+window.onload=some_function; //если не нужен аргумент
+
+//привязка к событию - когда оно произойдет, тогда запустится функция
+    window.onload = function() {
+    
+    some_function(some_argument);  // возможность использовать аргумент
+
+    }
+//не правильно    window.onload = some_function(); //возвращает ничего, ее тело не будет привязано к событию
+
+
+
+</script>
+</body>
+</html>

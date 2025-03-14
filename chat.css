@@ -1,0 +1,24 @@
+body {
+    background-color: rgb(255, 163, 163);
+} 
+
+.Title {
+    background-color: rgb(255, 134, 134);
+    color: white;
+    padding-left: 40%;
+
+}
+
+.time {
+    background-color:rgb(255, 134, 134);
+    border-radius: 5px;
+    padding: 3px 6px;
+    color: white;
+}
+
+.names {
+    background-color: rgb(180, 88, 88);
+    border-radius: 5px;
+    padding: 3px 6px;
+    color: white;
+}

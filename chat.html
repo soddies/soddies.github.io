@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link href = "chat.css", rel="stylesheet">
+</head>
+<body>
+    <h1 class = "Title">Welcome to the chat!</h1>
+    <div id = "chat"></div>
+    <script>
+        function genChat(name, mess)
+        {
+            const chatL = [];
+            for (let i = 0; i < 30; i++)
+            {
+                const time = `${Math.floor(Math.random() * 24)}:${String(Math.floor(Math.random()*60)).padStart(2, '0')}`;
+                const names = name[Math.floor(Math.random() * name.length)];
+                const message = mess[Math.floor(Math.random() * mess.length)];
+                chatL.push(`<span class = "time">${time}</span> <span class = "names">${names}</span> ${message}`);
+            }
+            return chatL;
+        }
+        const name = ["Кузя", "Миша", "Иван", "Рандом чел"];
+        const mess = ["Привет, как дела?", "Пока", "Нормально, а у тебя как?", "Привет", "Отлично!", "50/50", "Могло быть и лучше", "Ладно, до встречи!"];
+        const chat = genChat(name, mess);
+        const chatCont = document.getElementById("chat");
+
+        let chatHTML = "";
+        chat.forEach(line => {
+            chatHTML += `<p>${line}</p>`;
+        });
+        chatCont.innerHTML = chatHTML;
+    </script>
+</body>
+</html>

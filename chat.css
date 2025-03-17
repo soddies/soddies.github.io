@@ -1,24 +1,27 @@
 body {
-    background-color: rgb(255, 163, 163);
-} 
+    font-family: Arial, sans-serif;
+}
 
 .Title {
-    background-color: rgb(255, 134, 134);
-    color: white;
-    padding-left: 40%;
-
+    text-align: left;
+    margin-top: 20px;
 }
 
-.time {
-    background-color:rgb(255, 134, 134);
-    border-radius: 5px;
-    padding: 3px 6px;
-    color: white;
+.Times, .Names, .Messages {
+    padding: 10px;
+    text-align: center;
 }
 
-.names {
-    background-color: rgb(180, 88, 88);
-    border-radius: 5px;
-    padding: 3px 6px;
-    color: white;
+table {
+    width: 20%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 20px solid #000000;
+    padding: 8px;
+}
+
+th {
+    background-color: #f2f2f2;
 }

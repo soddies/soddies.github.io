@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat</title>
-    <link href = "chat.css", rel="stylesheet">
-    <link href = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="chat.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" type="chat.css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -44,31 +45,45 @@
           </div>
         </div>
       </nav>
-    <h1 class = "Title">Welcome to the chat!</h1>
-    <div id = "chat"></div>
+    <h1 class="Title">Welcome to the chat!</h1>
+    <table id="chatTable" class="display">
+        <thead>
+            <tr>
+                <th class = "Times">Время</th>
+                <th class = "Names">Имя</th>
+                <th class = "Messages">Сообщение</th>
+            </tr>
+        </thead>
+        <tbody id="chat">
+        </tbody>
+    </table>
     <script>
-        function genChat(name, mess)
-        {
+        function genChat(name, mess) {
             const chatL = [];
-            for (let i = 0; i < 30; i++)
-            {
-                const time = `${Math.floor(Math.random() * 24)}:${String(Math.floor(Math.random()*60)).padStart(2, '0')}`;
+            for (let i = 0; i < 30; i++) {
+                const time = `${Math.floor(Math.random() * 24)}:${String(Math.floor(Math.random() * 60)).padStart(2, '0')}`;
                 const names = name[Math.floor(Math.random() * name.length)];
                 const message = mess[Math.floor(Math.random() * mess.length)];
-                chatL.push(`<span class = "time">${time}</span> <span class = "names">${names}</span> ${message}`);
+                chatL.push(`<tr><td>${time}</td><td>${names}:</td><td>${message}</td></tr>`);
             }
             return chatL;
         }
-        const name = ["Кузя", "Миша", "Иван", "Рандом чел"];
+        const name = ["Кузя", "Миша", "Иван", "Чел"];
         const mess = ["Привет, как дела?", "Пока", "Нормально, а у тебя как?", "Привет", "Отлично!", "50/50", "Могло быть и лучше", "Ладно, до встречи!"];
         const chat = genChat(name, mess);
         const chatCont = document.getElementById("chat");
 
         let chatHTML = "";
         chat.forEach(line => {
-            chatHTML += `<p>${line}</p>`;
+            chatHTML += line;
         });
         chatCont.innerHTML = chatHTML;
+    </script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#chatTable').DataTable();
+        });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>

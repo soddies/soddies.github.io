@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website</title>
+</head>
+<style>
+    #element1, #element2 {
+        width: 50px;
+        height: 50px;
+        position: absolute;
+    }
+    #element1 {
+        background-color: red;
+        top: 50px;
+    }
+    #element2 {
+        background-color: blue;
+        top: 150px;
+    }
+</style>
+<body>
+    <div id="element1"></div>
+    <div id="element2"></div>
+    <script>
+        const element1 = document.getElementById('element1');
+        const element2 = document.getElementById('element2');
+
+        let position1 = 0;
+        let position2 = 400;
+
+        function moveElements() {
+            position1 += 2;
+            position2 -= 2;
+
+            element1.style.left = `${position1}px`;
+            element2.style.left = `${position2}px`;
+
+            if (position1 >= window.innerWidth || position2 <= 0) {
+                position1 = 0;
+                position2 = 400;
+            }
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    console.log('Произошло столновение.');
+                }
+            });
+        }, {
+            threshold: 0.5
+        });
+
+        observer.observe(element1);
+        observer.observe(element2);
+
+        setInterval(moveElements, 50);
+    </script>
+</body>
+</html>

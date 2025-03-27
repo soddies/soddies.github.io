@@ -1,4 +1,3 @@
 <?php 
-sleep(100);
-echo 123;
-?>
+sleep(3);
+echo rand(1, 1000); ?>

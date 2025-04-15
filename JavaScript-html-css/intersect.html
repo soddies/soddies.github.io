@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf8">
+<style>
+.container {
+  position: relative;
+  width: 400px;
+  height: 300px;
+  border: 2px solid #ccc;
+  margin: 20px;
+}
+
+.element {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+}
+
+#element1 {
+  background: #ff6b6b;
+  left: 0;
+  top: 0;
+}
+
+#element2 {
+  background: #4ecdc4;
+  left: 150px;
+  top: 50px;
+}
+
+.controls {
+  margin-top: 20px;
+}
+
+#status {
+  margin-top: 10px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="element" id="element1"></div>
+  <div class="element" id="element2"></div>
+</div>
+
+<div class="controls">
+  <label>
+    Позиция элемента 2:
+    <input type="range" id="position" min="0" max="200" value="150">
+  </label>
+</div>
+<div id="status"></div>
+
+<script>
+const container = document.querySelector('.container');
+const element1 = document.getElementById('element1');
+const element2 = document.getElementById('element2');
+const positionInput = document.getElementById('position');
+const status = document.getElementById('status');
+
+
+const observer = new IntersectionObserver((entries) => {
+    console.log(entries);
+    entries.forEach(entry => {
+        const rect1 = element1.getBoundingClientRect();
+        const rect2 = element2.getBoundingClientRect();
+        
+        // Проверяем точное пересечение элементов
+        if (rect1.right > rect2.left && 
+            rect1.left < rect2.right && 
+            rect1.bottom > rect2.top && 
+            rect1.top < rect2.bottom) {
+            status.textContent = 'Элементы пересекаются!';
+            status.style.color = 'green';
+        } else {
+            status.textContent = 'Элементы не пересекаются';
+            status.style.color = 'red';
+        }
+    });
+}, {
+    root: null,  // Убираем контейнер как root
+    threshold: 0  // Устанавливаем минимальный порог
+});
+
+// Наблюдаем за обоими элементами
+observer.observe(element1);
+observer.observe(element2);
+
+positionInput.addEventListener('input', (e) => {
+  element2.style.left = `${e.target.value}px`;
+});
+</script>
+</body>
+</html>

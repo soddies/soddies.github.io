@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+</head>
+<style>
+    div,span{height:100px;width:100; border:1px solid black;}
+    body{background:yellow;}
+
+    #first_div:hover{background: green;}
+    .first_div:hover{background:red;}
+</style>
+
+<body>
+<div id = "first_div">мой id first_div</div>
+<div class="first_div">мой класс first_div<button>кнопка внутри .first_div</button></div>
+<span>Hi? It's span</span>    
+</body>
+<script>
+    let b = document.querySelector("body");
+// fetch(my_message)----------------->[]
+    let result = '';
+    result+='<table id = "ssss">';
+    for (let i = 0; i < 100; ++i)
+    {
+        result += '<tr>';
+        for (let j = 0; j < 100; ++j)
+        {
+            result += '<td>'+i+":"+j+'</td>';
+        }
+        result += '</tr>';
+    }
+    result += '</table>';
+    b.innerHTML+=result;
+</script>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+</head>
+<body>
+    <script>
+        window.onload = function ()
+        {
+            // document.getElementById (idЭлемента)
+            let header = document.querySelector('header'); // находим header
+            let header_nodes = header.childNodes; // получаем childNodes
+            for (i = 0; i < header_nodes.length; ++i) // перечисляем childNodes
+            {
+                if (header_nodes[i].nodesName == '#text') // если child текстовый
+                {
+                    header_nodes[i].data = header_nodes[i].data.trim(); // обрезка
+                    if (header_nodes[i].data.trim().length == 0) // если пустой
+                    {
+                        continue; // пропуск итерации
+                    } // если не пустой
+                    myFooter.innerHTML+='<h1>'+header_nodes[i].data+'</h1>'; // вывод в консоль
+                }
+                else
+                {
+                    next_child_nodes = header_nodes[i].childNodes; // получаем его childNodes
+                    for (j = 0; j < next_child_nodes.length; ++j)
+                    {
+                        if (next_child_nodes[j].nodeName == '#text') // если child текстовый
+                        {
+                            if (next_child_nodes[j].data.trim().length == 0) // если пустой
+                            {
+                                continue; // пропуск итерации for;
+                            } // если не пустой
+                            // console.dir(next_child_nodes[j]);
+                            myFooter.innerHTML+='<h2>'+next_child_nodes[j].data+'</h2>';
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

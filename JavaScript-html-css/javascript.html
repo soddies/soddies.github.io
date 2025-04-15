@@ -1,0 +1,42 @@
+<html lang="en">
+<meta charset="utf8">
+<body>
+    <h1> Три способа добавить js </h1>
+    <pre>
+   
+        &lt;script src=&quot;&quot;&gt;&lt;script&gt;
+        &lt;button onclick=&quot;some_function()&quot;&gt;click me&lt;/button&gt;
+        &lt;script&gt; код js  &lt;script&gt;
+    </pre>
+
+
+
+<button onclick=" some_function(); "> click me </button>
+
+<script>
+
+function some_function() {
+
+console.log('its some function');
+}
+function another_function() {
+
+console.log('im another function');
+}
+x = some_function;
+console.log("trying to call x()");
+x();
+console.log("<<<<<<<<<it was result");
+
+
+    window.onload = function() {
+
+        console.log("onload");
+        console.log("starting some_function");
+        some_function();
+
+    }
+
+</script>
+</body>
+</html>

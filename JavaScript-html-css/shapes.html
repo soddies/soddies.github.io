@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rectangles</title>
+    <style>
+        #rectangles-container {
+            display: flex;
+            gap: 10px;
+        }
+        .rectangle {
+            border: 2px solid black;
+            background-color: blue;
+        }
+
+        #circle-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        .circle {
+            border: 2px solid black;
+            border-radius: 50%;
+            background-color: brown;
+        }
+
+        #triangle-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        .triangle {
+            position: relative;
+            width: 0;
+            height: 0;
+        }
+
+        .triangle::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 100px solid rgb(24, 23, 99);
+        }
+    </style>
+</head>
+<body>
+    <div id = "rectangles-container"></div>
+    <div id = "circle-container"></div>
+    <div id = "triangle-container"></div>
+    <script>
+        class Rectangle {
+            constructor(width, height) {
+                this.width = width;
+                this.height = height;
+            }
+
+            createElement() {
+                const div = document.createElement('div');
+                div.className = 'rectangle';
+                div.style.width = `${this.width}px`;
+                div.style.height = `${this.height}px`;
+                return div;
+            }
+        }
+
+        const rect1 = new Rectangle(100, 50);
+        const rect2 = new Rectangle(150, 75);
+
+        const container = document.getElementById('rectangles-container');
+        container.appendChild(rect1.createElement());
+        container.appendChild(rect2.createElement());
+
+
+        class Circle {
+            constructor(radius) {
+                this.radius = radius;
+            }
+
+            createElementCircle() {
+                const div = document.createElement('div');
+                div.className = 'circle';
+                div.style.width = `${this.radius * 2}px`;
+                div.style.height = `${this.radius * 2}px`;
+                return div;
+            }
+        }
+
+        const cir1 = new Circle(50);
+        const cir2 = new Circle(75);
+
+        const containers = document.getElementById('circle-container');
+        containers.appendChild(cir1.createElementCircle());
+        containers.appendChild(cir2.createElementCircle());
+
+
+        class Triangle {
+            constructor(base, height) {
+                this.base = base;
+                this.height = height;
+            }
+
+            createElementTriangle() {
+                const div = document.createElement('div');
+                div.className = 'triangle';
+                div.style.setProperty('--base', `${this.base}px`);
+                div.style.setProperty('--height', `${this.height}px`);
+                return div;
+            }
+        }
+
+        const triangle1 = new Triangle(100, 50);
+
+        const containerss = document.getElementById('triangle-container');
+        containerss.appendChild(triangle1.createElementTriangle());
+    </script>
+</body>
+</html>

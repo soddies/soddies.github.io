@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Чат</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.chat-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 600px; 
+    max-width: 90%; 
+    box-sizing: border-box;
+}
+
+.chat-container h1 {
+    margin-left: 45%;
+}
+
+.message-container {
+    border: 1px solid #ccc;
+    padding: 10px;
+    height: 300px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+
+.input-container {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 10px; 
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+#messageInput, #senderInput {
+    flex: 1 1 200px; 
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    min-width: 0; 
+}
+
+#sendButton {
+    flex: 0 0 auto; 
+    padding: 10px 20px;
+    background-color: #ff69b4;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    align-self: flex-start; 
+}
+
+#sendButton:hover {
+    background-color: #ff1493;
+}
+
+.user-messages {
+    border: 1px solid #ccc;
+    padding: 10px;
+    height: 100px;
+    overflow-y: auto;
+}
+
+.fixed-message {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px;
+    background-color: #ff69b4;
+    color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000; 
+}
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <h1>Чат</h1>
+        <div class="message-container">
+            <div class="messages" id="messages">
+            </div>
+        </div>
+        <div class="input-container">
+            <input type="text" id="messageInput" placeholder="Введите сообщение">
+            <input type="text" id="senderInput" placeholder="Введите отправителя">
+            <button id="sendButton">Отправить сообщение</button>
+        </div>
+        <h2>Ваши сообщения:</h2>
+        <div class="user-messages" id="userMessages">
+            <!-- Сообщения пользователя будут отображаться здесь -->
+        </div>
+    </div>
+
+    <div class="fixed-message">Чат сделан Пчелкиной Екатериной (soddies)</div>
+    <script>
+        document.getElementById('sendButton').addEventListener('click', function() {
+    const messageInput = document.getElementById('messageInput');
+    const senderInput = document.getElementById('senderInput');
+    const messages = document.getElementById('messages');
+    const userMessages = document.getElementById('userMessages');
+
+    const messageText = messageInput.value;
+    const senderText = senderInput.value;
+
+    if (messageText && senderText) {
+        const messageElement = document.createElement('div');
+        messageElement.className = 'message';
+        messageElement.innerText = `${senderText}: ${messageText}`;
+
+        messages.appendChild(messageElement);
+        userMessages.appendChild(messageElement.cloneNode(true));
+
+        messageInput.value = '';
+        senderInput.value = '';
+
+        messages.scrollTop = messages.scrollHeight;
+        userMessages.scrollTop = userMessages.scrollHeight;
+    }
+});
+    </script>
+</body>
+</html>

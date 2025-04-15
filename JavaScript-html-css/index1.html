@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #loader{
+            transition:1s;
+            border-radius:50%;
+            height:100px;
+            width:100px;
+            background:repeating-linear-gradient(45deg, #d86060, transparent)
+        }
+        .hidden { opacity:0;display:none;transform:rotate(0deg);}
+        .shown {opacity:1; display:block;
+        transform:rotate(180deg);}
+    </style>
+</head>
+<body>
+    <h1>hello</h1>
+    <button onclick="play1();">play1</button>
+    <button onclick="play2();">play2</button>
+    <div id="resultDiv1">   </div>
+    <hr>
+    <div id="resultDiv2">   </div>
+
+    <img src="C:\Users\Екатерина Пчелкина\Downloads\amalie-steiness.gif" alt="GIF">
+
+    <script>
+
+async function play1() {
+
+        loader.classList.add("shown");
+        console.log('start of play1');
+        //делаем запрос к файлу test.php
+        console.log("шаг 1");
+        var responseResult = await fetch( 'test.php');
+        //text() - получить непосредственный ответ
+        console.log("шаг 2");
+        var otvet = await responseResult.text();
+        console.log(otvet);
+        resultDiv1.innerHTML= otvet;
+        console.log('end of play1');
+
+        console.log('start of play1');
+        //делаем запрос к файлу test.php
+        console.log("шаг 1");
+        var responseResult = await fetch( 'test.php');
+        //text() - получить непосредственный ответ
+        console.log("шаг 2");
+        var otvet = await responseResult.text();
+        console.log(otvet);
+        resultDiv1.innerHTML= otvet;
+        console.log('end of play1');
+
+        console.log('start of play1');
+        //делаем запрос к файлу test.php
+        console.log("шаг 1");
+        var responseResult = await fetch( 'test.php');
+        //text() - получить непосредственный ответ
+        console.log("шаг 2");
+        var otvet = await responseResult.text();
+        console.log(otvet);
+        resultDiv1.innerHTML= otvet;
+        console.log('end of play1');
+        loader.classList.remove("shown");
+}
+             //   then( function(otvet) { console.log(otvet.text());    }); 
+function play2() {
+    console.log('start of play2');
+
+     fetch('test.php')
+//    .then(function(response) { response.text();}) не работает
+    //.then(response => response.text())//  работает
+    .then(function(response) {loader.classList.add("shown"); console.log("шаг 1"); return response.text();})//  работает
+    .then(function(otvet) { console.log("шаг 2"); loader.classList.add("hidden"); console.log(otvet); resultDiv2.innerHTML= otvet;});
+    
+    fetch('test.php')
+//    .then(function(response) { response.text();}) не работает
+    //.then(response => response.text())//  работает
+    .then(function(response) {loader.classList.add("shown");  console.log("шаг 1"); return response.text();})//  работает
+    .then(function(otvet) {loader.classList.add("hidden");  console.log("шаг 2"); console.log(otvet); resultDiv2.innerHTML= otvet;});
+
+    fetch('test.php')
+//    .then(function(response) { response.text();}) не работает
+    //.then(response => response.text())//  работает
+    .then(function(response) { console.log("шаг 1"); return response.text();})//  работает
+    .then(function(otvet) { console.log("шаг 2"); console.log(otvet); resultDiv2.innerHTML= otvet;});
+
+    console.log('end of play2');
+        }
+
+
+
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Измененено Пчелкиной Екатериной РПО 23/2. -->

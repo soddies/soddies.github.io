@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css", rel="stylesheet">
+    <script src ="//cdn.datatables.net/2.2.2/js/dataTables.min.js"></script>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+}
+
+.Title {
+    text-align: left;
+    margin-top: 20px;
+}
+
+.Times, .Names, .Messages {
+    padding: 10px;
+    text-align: center;
+}
+
+table {
+    width: 20%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 20px solid #000000;
+    padding: 8px;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Dropdown
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+    <h1 class="Title">Welcome to the chat!</h1>
+    <table id="chatTable" class="display">
+        <thead>
+            <tr>
+                <th class = "Times">Время</th>
+                <th class = "Names">Имя</th>
+                <th class = "Messages">Сообщение</th>
+            </tr>
+        </thead>
+        <tbody id="chat">
+        </tbody>
+    </table>
+    <script>
+        function genChat(name, mess) {
+            const chatL = [];
+            for (let i = 0; i < 30; i++) {
+                const time = `${Math.floor(Math.random() * 24)}:${String(Math.floor(Math.random() * 60)).padStart(2, '0')}`;
+                const names = name[Math.floor(Math.random() * name.length)];
+                const message = mess[Math.floor(Math.random() * mess.length)];
+                chatL.push(`<tr><td>${time}</td><td>${names}:</td><td>${message}</td></tr>`);
+            }
+            return chatL;
+        }
+        const name = ["Кузя", "Миша", "Иван", "Чел"];
+        const mess = ["Привет, как дела?", "Пока", "Нормально, а у тебя как?", "Привет", "Отлично!", "50/50", "Могло быть и лучше", "Ладно, до встречи!"];
+        const chat = genChat(name, mess);
+        const chatCont = document.getElementById("chat");
+
+        let chatHTML = "";
+        chat.forEach(line => {
+            chatHTML += line;
+        });
+        chatCont.innerHTML = chatHTML;
+    </script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#chatTable').DataTable();
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+  </body>
+</html>

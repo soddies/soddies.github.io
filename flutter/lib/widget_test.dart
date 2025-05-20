@@ -3,8 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:firstproject/main.dart'; // Убедитесь, что путь к вашему основному файлу правильный
-
+import 'package:firstproject/main.dart'; 
 void main() {
   setUp(() async {
     // Initialize Hive for testing

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Чат WebSoket PieSoket</title>
+    <style>
+        body {
+            background: #f2f2f2;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .chat-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 30px;
+            width: 450px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        #chat-box {
+            width: 95%;
+            height: 200px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            overflow-y: auto;
+            margin-bottom: 15px;
+            white-space: pre-wrap;
+        }
+
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            margin: 0 5px 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #send-btn {
+            background-color: #ff69b4;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            margin-left: 130px;
+        }
+
+        #send-btn:hover {
+            background-color: #ff4da6;
+        }
+
+        #your-messages {
+            width: 100%;
+            height: 100px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            overflow-y: auto;
+            background: #fafafa;
+        }
+
+        .input-row {
+            display: flex;
+            justify-content: space-around;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <h2>Чат</h2>
+        <div id="chat-box"></div>
+
+        <div class="input-row">
+        <input type="text" id="message" placeholder="Введите сообщение">
+        <input type="text" id="sender" placeholder="Введите отправителя">
+        </div>
+        
+        <button id="send-btn">Отправить сообщение</button>
+
+        <div id="your-message"></div>
+    </div>
+    <script>
+        const chatBox = document.getElementById('chat-box');
+        const yourMessages = document.getElementById('your-messages');
+        const messageInput = document.getElementById('message');
+        const senderInput = document.getElementById('sender');
+        const sendBtn = document.getElementById('send-btn');
+
+        const socket = new WebSocket('wss://s14684.nyc1.piesocket.com/v3/1?api_key=08N500YGUkcsGpR7DnNm58neY511MDyKs5LwrhWx&notify_self=1');
+
+        socket.onopen = () => {
+            chatBox.innerText += "✅Подключение установлено!\n";
+        };
+
+        socket.onmessage = (event) => {
+            chatBox.innerText += "📩 " + event.data + "\n";
+        };
+
+        socket.onerror = (err) => {
+            chatBox.innerText += "❌Ошибка подключения\n";
+        };
+
+        sendBtn.onclick = () => {
+            const msg = messageInput.value.trim();
+            const sender = senderInput.value.trim();
+
+            if (!msg || !sender) return;
+
+            const fullMessage = sender + ": " + msg;
+            socket.send(fullMessage);
+
+            yourMessages.innerText += "📥 " + fullMessage + "\n";
+
+            messageInput.value = "";
+        };
+    </script>
+</body>
+</html>
